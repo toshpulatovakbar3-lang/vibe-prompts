@@ -11,12 +11,20 @@
             box-sizing: border-box;
         }
 
+        /* Светлая тема (по умолчанию) */
         body {
-            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%);
-            color: #eef2ff;
+            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+            color: #1a1a2e;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
             padding: 24px 16px;
             min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        /* Тёмная тема */
+        body.dark {
+            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%);
+            color: #eef2ff;
         }
 
         .container {
@@ -24,19 +32,20 @@
             margin: 0 auto;
         }
 
+        /* Шапка с переключателями */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 32px;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
         }
 
         .title-section h1 {
             font-size: 1.8rem;
             font-weight: 600;
-            background: linear-gradient(135deg, #a5f3ff, #7c3aed);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -44,31 +53,47 @@
         }
 
         .title-section p {
-            color: #8b8ca3;
             font-size: 0.8rem;
             margin-top: 4px;
+            opacity: 0.7;
         }
 
-        .lang-switch {
-            background: rgba(30, 30, 40, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            padding: 4px;
+        /* Контейнер для двух переключателей */
+        .header-controls {
             display: flex;
-            gap: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* iPhone-стиль переключателя языка интерфейса */
+        .lang-switch {
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 40px;
+            padding: 3px;
+            display: flex;
+            gap: 3px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .lang-switch {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .lang-option {
-            padding: 8px 20px;
-            font-size: 0.85rem;
+            padding: 6px 18px;
+            font-size: 0.8rem;
             font-weight: 500;
             border-radius: 32px;
             cursor: pointer;
             transition: all 0.2s ease;
             background: transparent;
-            color: #9ca3af;
             border: none;
+            color: #666;
+        }
+
+        body.dark .lang-option {
+            color: #9ca3af;
         }
 
         .lang-option.active {
@@ -77,13 +102,50 @@
             box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
         }
 
+        /* Переключатель темы (иконки) */
+        .theme-switch {
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 40px;
+            padding: 3px;
+            display: flex;
+            gap: 3px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .theme-switch {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-option {
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 32px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            border: none;
+        }
+
+        .theme-option.active {
+            background: #7c3aed;
+            color: white;
+        }
+
         .card {
-            background: rgba(30, 30, 40, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 28px;
             padding: 24px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        body.dark .card {
+            background: rgba(30, 30, 40, 0.7);
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         .card-title {
@@ -97,15 +159,20 @@
 
         textarea {
             width: 100%;
-            background: #1e1e2a;
-            border: 1px solid #2a2a35;
+            background: #f0f0f5;
+            border: 1px solid #ddd;
             border-radius: 20px;
             padding: 16px;
-            color: #fff;
             font-size: 1rem;
             font-family: inherit;
             resize: vertical;
-            transition: border 0.2s;
+            transition: all 0.3s ease;
+        }
+
+        body.dark textarea {
+            background: #1e1e2a;
+            border-color: #2a2a35;
+            color: #fff;
         }
 
         textarea:focus {
@@ -141,22 +208,26 @@
         }
 
         .opt-btn {
-            background: #1e1e2a;
-            border: 1px solid #2a2a35;
+            background: #f0f0f5;
+            border: 1px solid #ddd;
             border-radius: 40px;
             padding: 8px 16px;
             font-size: 0.8rem;
             font-weight: 500;
-            color: #cbd5e1;
             cursor: pointer;
             transition: all 0.2s;
+        }
+
+        body.dark .opt-btn {
+            background: #1e1e2a;
+            border-color: #2a2a35;
+            color: #cbd5e1;
         }
 
         .opt-btn.active {
             background: #7c3aed;
             border-color: #7c3aed;
             color: white;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
         }
 
         .action-buttons {
@@ -167,20 +238,21 @@
         }
 
         .action-btn {
-            background: #1e1e2a;
-            border: 1px solid #2a2a35;
+            background: #f0f0f5;
+            border: 1px solid #ddd;
             border-radius: 40px;
             padding: 10px 16px;
             font-size: 0.85rem;
-            color: #cbd5e1;
             cursor: pointer;
             flex: 1;
             text-align: center;
             transition: all 0.2s;
         }
 
-        .action-btn:hover {
-            background: #2a2a35;
+        body.dark .action-btn {
+            background: #1e1e2a;
+            border-color: #2a2a35;
+            color: #cbd5e1;
         }
 
         .generate-btn {
@@ -201,18 +273,19 @@
             transform: scale(0.98);
         }
 
-        .generate-btn:disabled {
-            opacity: 0.6;
-            transform: none;
-        }
-
         .result-card {
-            background: rgba(30, 30, 40, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 28px;
             padding: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             display: none;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .result-card {
+            background: rgba(30, 30, 40, 0.7);
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         .result-header {
@@ -228,7 +301,7 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             font-weight: 600;
-            color: #a5b4fc;
+            color: #8b8ca3;
         }
 
         .result-actions {
@@ -243,17 +316,17 @@
             padding: 8px 16px;
             font-size: 0.8rem;
             font-weight: 500;
-            color: #c4b5fd;
+            color: #7c3aed;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .icon-btn:active {
-            transform: scale(0.96);
+        body.dark .icon-btn {
+            color: #c4b5fd;
         }
 
         .prompt-box {
-            background: #0f0f17;
+            background: #f8f8fc;
             border-radius: 20px;
             padding: 20px;
             font-size: 0.95rem;
@@ -262,63 +335,40 @@
             word-break: break-word;
             border-left: 3px solid #7c3aed;
             margin-bottom: 8px;
+        }
+
+        body.dark .prompt-box {
+            background: #0f0f17;
             color: #e2e8f0;
         }
 
         .history-card {
-            background: rgba(30, 30, 40, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 28px;
             padding: 24px;
             margin-top: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .history-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .history-list {
-            max-height: 300px;
-            overflow-y: auto;
+        body.dark .history-card {
+            background: rgba(30, 30, 40, 0.7);
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         .history-item {
-            background: #0f0f17;
+            background: #f8f8fc;
             border-radius: 16px;
             padding: 12px 16px;
             margin-bottom: 10px;
             border-left: 2px solid #7c3aed;
-            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .history-item:hover {
-            background: #1a1a24;
-        }
-
-        .history-prompt {
-            color: #cbd5e1;
-            word-break: break-word;
-            font-size: 0.8rem;
-        }
-
-        .history-date {
-            font-size: 0.65rem;
-            color: #6b6b8a;
-            margin-top: 6px;
-        }
-
-        .empty-history {
-            text-align: center;
-            color: #6b6b8a;
-            padding: 20px;
+        body.dark .history-item {
+            background: #0f0f17;
         }
 
         .error {
@@ -331,17 +381,17 @@
         .footer {
             text-align: center;
             font-size: 0.7rem;
-            color: #4b4b63;
             margin-top: 32px;
+            opacity: 0.5;
         }
 
         .loading {
             display: inline-block;
             width: 18px;
             height: 18px;
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 2px solid rgba(124, 58, 237, 0.2);
             border-radius: 50%;
-            border-top-color: #a855f7;
+            border-top-color: #7c3aed;
             animation: spin 0.7s linear infinite;
             vertical-align: middle;
             margin-right: 10px;
@@ -359,9 +409,17 @@
             <h1>Vibe Prompts</h1>
             <p id="subtitle">Напиши идею — получи идеальный промт</p>
         </div>
-        <div class="lang-switch">
-            <button data-lang="ru" class="lang-option active">Рус</button>
-            <button data-lang="uz" class="lang-option">Uz</button>
+        <div class="header-controls">
+            <!-- iPhone-стиль переключателя языка интерфейса -->
+            <div class="lang-switch">
+                <button data-lang="ru" class="lang-option active">Рус</button>
+                <button data-lang="uz" class="lang-option">Uz</button>
+            </div>
+            <!-- Переключатель темы -->
+            <div class="theme-switch">
+                <button data-theme="light" class="theme-option active">☀️</button>
+                <button data-theme="dark" class="theme-option">🌙</button>
+            </div>
         </div>
     </div>
 
@@ -418,7 +476,7 @@
     </div>
 
     <div id="historyCard" class="history-card">
-        <div class="history-title">
+        <div class="history-title" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
             <span class="card-title" id="historyLabel">📜 История</span>
             <button id="clearHistoryBtn" class="icon-btn" style="background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.5); color: #f87171;">🗑️ Очистить</button>
         </div>
@@ -431,10 +489,11 @@
 </div>
 
 <script>
+    // ---------- API КЛЮЧ (ЗАМЕНИ НА СВОЙ) ----------
     const GROQ_API_KEY = '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';
     const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-    // Элементы
+    // Элементы DOM
     const userInput = document.getElementById('userInput');
     const generateBtn = document.getElementById('generateBtn');
     const resultCard = document.getElementById('resultCard');
@@ -447,15 +506,32 @@
     const exampleBtn = document.getElementById('exampleBtn');
     const randomBtn = document.getElementById('randomBtn');
 
+    // Тема
+    let currentTheme = localStorage.getItem('theme') || 'light';
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+        localStorage.setItem('theme', theme);
+        document.querySelectorAll('.theme-option').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === theme);
+        });
+    }
+    document.querySelectorAll('.theme-option').forEach(btn => {
+        btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+    });
+    setTheme(currentTheme);
+
     // Состояния
     let selectedLength = 'detailed';
     let selectedStyle = 'realistic';
     let selectedPromptLang = 'en';
     let selectedInterfaceLang = 'ru';
-    let currentPrompt = '';
     let history = [];
 
-    // Тексты (добавлены exampleBtn и randomBtn)
+    // Тексты интерфейса
     const translations = {
         ru: {
             subtitle: 'Напиши идею — получи идеальный промт',
@@ -511,8 +587,6 @@
         document.getElementById('historyLabel').textContent = t.historyLabel;
         document.getElementById('clearHistoryBtn').textContent = t.clearBtn;
         userInput.placeholder = t.inputPlaceholder;
-        
-        // Перевод кнопок Пример и Случайная идея
         exampleBtn.textContent = t.exampleBtn;
         randomBtn.textContent = t.randomBtn;
         
@@ -659,7 +733,6 @@
         try {
             const prompt = await generatePrompt(query, selectedLength, selectedStyle, selectedPromptLang);
             promptOutput.innerText = prompt;
-            currentPrompt = prompt;
         } catch (err) {
             errorMsg.textContent = `❌ ${err.message}`;
             promptOutput.innerHTML = 'Ошибка';
@@ -684,20 +757,20 @@
     function saveToHistory(promptText, query) {
         history.unshift({ prompt: promptText, query, date: new Date().toLocaleString() });
         if (history.length > 50) history.pop();
-        localStorage.setItem('vibe_prompts_history_v3', JSON.stringify(history));
+        localStorage.setItem('vibe_prompts_history', JSON.stringify(history));
         renderHistory();
     }
 
     function renderHistory() {
         if (!historyList) return;
         if (history.length === 0) {
-            historyList.innerHTML = `<div class="empty-history">${translations[selectedInterfaceLang].emptyHistory}</div>`;
+            historyList.innerHTML = `<div style="text-align: center; color: #6b6b8a; padding: 20px;">${translations[selectedInterfaceLang].emptyHistory}</div>`;
             return;
         }
         historyList.innerHTML = history.map((item, idx) => `
             <div class="history-item" data-index="${idx}">
-                <div class="history-prompt">${escapeHtml(item.prompt.substring(0, 150))}${item.prompt.length > 150 ? '...' : ''}</div>
-                <div class="history-date">📅 ${item.date}</div>
+                <div style="color: inherit; word-break: break-word;">${escapeHtml(item.prompt.substring(0, 150))}${item.prompt.length > 150 ? '...' : ''}</div>
+                <div style="font-size: 0.65rem; color: #6b6b8a; margin-top: 6px;">📅 ${item.date}</div>
             </div>
         `).join('');
         document.querySelectorAll('.history-item').forEach(el => {
@@ -705,7 +778,6 @@
                 const idx = parseInt(el.dataset.index);
                 if (!isNaN(idx) && history[idx]) {
                     promptOutput.innerText = history[idx].prompt;
-                    currentPrompt = history[idx].prompt;
                     resultCard.style.display = 'block';
                 }
             });
@@ -713,7 +785,7 @@
     }
 
     function loadHistory() {
-        const saved = localStorage.getItem('vibe_prompts_history_v3');
+        const saved = localStorage.getItem('vibe_prompts_history');
         if (saved) { try { history = JSON.parse(saved); } catch(e) {} }
         renderHistory();
     }
@@ -733,7 +805,7 @@
     clearHistoryBtn.addEventListener('click', () => {
         if (confirm(selectedInterfaceLang === 'ru' ? 'Удалить историю?' : 'Tarixni tozalash?')) {
             history = [];
-            localStorage.removeItem('vibe_prompts_history_v3');
+            localStorage.removeItem('vibe_prompts_history');
             renderHistory();
         }
     });
@@ -745,5 +817,6 @@
     loadHistory();
     updateUILanguage();
 </script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>
 </html>
